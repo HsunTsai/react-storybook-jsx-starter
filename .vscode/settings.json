@@ -1,0 +1,9 @@
+{
+    "prettier.endOfLine": "auto",
+    "prettier.printWidth": 140,
+    "prettier.jsxSingleQuote": true,
+    "prettier.useTabs": true,
+    "prettier.arrowParens": "avoid",
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4
+}

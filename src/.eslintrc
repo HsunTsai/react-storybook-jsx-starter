@@ -1,0 +1,22 @@
+{
+	"extends": ["airbnb"],
+	"plugins": ["prettier"],
+	"rules": {
+		"indent": ["error", "tab"],
+		"no-tabs": "off",
+		"no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+		"linebreak-style": ["off", "windows"],
+		"prettier/prettier": "error",
+		"no-unused-vars": "warn",
+		"arrow-parens": "off",
+		"object-curly-newline": "off",
+		"react/jsx-indent": [2, "tab"],
+		"react/button-has-type": "off",
+		"react/jsx-props-no-spreading": "off"
+	},
+	"env": {
+		"jest": true,
+		"browser": true,
+		"node": true
+	}
+}

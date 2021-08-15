@@ -1,0 +1,85 @@
+{
+	"name": "react-storybook-jsx-starter",
+	"version": "1.0.0",
+	"description": "This project is to be used as a starter kit for building React component using Storybook and Rollup",
+	"author": "Hsun Tsai",
+	"main": "lib/index.js",
+	"typings": "lib/index.d.ts",
+	"files": [
+		"lib"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/HsunTsai/react-storybook-jsx-starter"
+	},
+	"dependencies": {
+		"classnames": "^2.2.6",
+		"node-sass": "^4.9.3",
+		"prop-types": "^15.7.2",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"sass": "^1.36.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/plugin-proposal-private-methods": "^7.14.5",
+		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"@babel/preset-env": "^7.5.5",
+		"@babel/preset-react": "^7.0.0",
+		"@storybook/addon-essentials": "6.3.5",
+		"@storybook/addon-links": "^6.3.5",
+		"@storybook/addon-notes": "^5.3.21",
+		"@storybook/addons": "^6.3.5",
+		"@storybook/preset-scss": "^1.0.3",
+		"@storybook/react": "^6.3.5",
+		"autoprefixer": "^9.6.1",
+		"babel-loader": "^8.1.0",
+		"css-loader": "^1.0.0",
+		"eslint": "7.2.0",
+		"eslint-config-airbnb": "18.2.1",
+		"eslint-config-node": "^4.1.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-loader": "^4.0.2",
+		"eslint-plugin-import": "2.22.1",
+		"eslint-plugin-jsx-a11y": "6.4.1",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^3.4.0",
+		"eslint-plugin-react": "7.21.5",
+		"eslint-plugin-react-hooks": "1.7.0",
+		"prettier": "^2.3.2",
+		"rollup": "^2.54.0",
+		"rollup-plugin-babel": "^4.4.0",
+		"rollup-plugin-cleaner": "^1.0.0",
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-img": "^1.1.0",
+		"rollup-plugin-postcss": "^4.0.0",
+		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-scss": "3",
+		"rollup-plugin-terser": "^7.0.2",
+		"sass-loader": "7.1.0",
+		"style-loader": "^0.22.1"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"scripts": {
+		"start": "yarn storybook",
+		"lint": "eslint ./src/**/*.{js,jsx}",
+		"format": "prettier --write --tab-width 4 --use-tabs true \"{,src/**/}*.{js,jsx}\"",
+		"storybook": "start-storybook -p 6006",
+		"build": "rollup -c && npm run build-index",
+		"build-index": "node ./rollup.index.js",
+		"build-storybook": "build-storybook -c .storybook -o public",
+		"create": "node ./buildUtils/create.js"
+	}
+}
