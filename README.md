@@ -21,6 +21,10 @@ Runs storybook.<br>
 Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
 The page will reload if you make component edits.
 
+### `yarn create`
+
+Help you create component or util. It will automatic generate `folder`, `JSX`, `.store.jsx`.
+
 ### `yarn lint`
 
 Runs airbnb linting config.<br>
