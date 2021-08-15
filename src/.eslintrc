@@ -6,6 +6,7 @@
 		"no-tabs": "off",
 		"no-console": ["warn", { "allow": ["warn", "error", "info"] }],
 		"linebreak-style": ["off", "windows"],
+		"operator-linebreak": "off",
 		"prettier/prettier": "error",
 		"no-unused-vars": "warn",
 		"arrow-parens": "off",
