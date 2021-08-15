@@ -12,7 +12,9 @@
 		"arrow-parens": "off",
 		"object-curly-newline": "off",
 		"react/jsx-indent": [2, "tab"],
+		"react/jsx-indent-props": [2, "tab"],
 		"react/button-has-type": "off",
+		"react/jsx-wrap-multilines": "off",
 		"react/jsx-props-no-spreading": "off"
 	},
 	"env": {
