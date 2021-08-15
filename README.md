@@ -25,6 +25,7 @@ The page will reload if you make component edits.
 
 Runs airbnb linting config.<br>
 Please refer to `.eslintrc` for more details in rules that are excluded/added from the initial Airbnb configuration, which can be found [here](https://www.npmjs.com/package/eslint-config-airbnb)
+Notice: If developer using visual code IDE, download `eslint` and `prettier` extensions to help you develop.
 
 ### `yarn build`
 
