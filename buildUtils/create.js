@@ -19,7 +19,7 @@ String.prototype.insert = function (insterBefore, string) {
 const modifyList = (name, category, folderDir) => {
 	const componentListPath = `./rollup.list.${category}.js`;
 	const data = fs.readFileSync(componentListPath).toString();
-	fs.writeFileSync(componentListPath, data.insert(`/* [end] export your ${category} */`, `${name}: '${folderDir}/${name}.jsx',\r\n\t\t`));
+	fs.writeFileSync(componentListPath, data.insert(`/* [end] export your ${category} */`, `${name}: '${folderDir}/${name}.jsx',\r\n\t`));
 };
 
 rl.question('Component Name(Upper camel case): ', componentName => {
