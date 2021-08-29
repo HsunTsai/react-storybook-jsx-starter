@@ -4,7 +4,6 @@ import image from 'rollup-plugin-img';
 import replace from 'rollup-plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
-import scss from 'rollup-plugin-scss';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
 
@@ -18,8 +17,7 @@ const external = ['react', 'react-dom', 'react-proptypes'];
 const plugins = [
 	image(),
 	// resolve({ browser: true }),
-	// Support Scss
-	scss({ processor: () => postcss([autoprefixer()]), outputStyle: 'compressed' }),
+	postcss({ extensions: ['.css', '.scss'], plugins: [autoprefixer()] }),
 	replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
 	babel({ include: 'src/**', runtimeHelpers: true, exclude: 'node_modules/**' }),
 	commonjs({
