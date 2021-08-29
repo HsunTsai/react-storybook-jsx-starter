@@ -12,7 +12,7 @@ const components = require('./rollup.list.components');
 const utils = require('./rollup.list.utils');
 
 // External dependency
-const external = ['react', 'react-dom', 'react-proptypes'];
+const external = ['react', 'react-dom', 'prop-types'];
 
 // Plugins
 const plugins = [
