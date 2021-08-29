@@ -1,3 +1,4 @@
+import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import image from 'rollup-plugin-img';
@@ -16,7 +17,7 @@ const external = ['react', 'react-dom', 'react-proptypes'];
 // Plugins
 const plugins = [
 	image(),
-	// resolve({ browser: true }),
+	resolve({ extensions: ['.js', '.jsx', '.json'] }), // browser: true,
 	postcss({ extensions: ['.css', '.scss'], plugins: [autoprefixer()] }),
 	replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
 	babel({ include: 'src/**', runtimeHelpers: true, exclude: 'node_modules/**' }),
