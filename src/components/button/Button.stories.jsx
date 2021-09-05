@@ -12,26 +12,26 @@ export default {
 	argTypes: {
 		/* component argTypes */
 		/* component argTypes */
-		// text: { control: 'text' },
-		// size: {
-		// 	options: ['small', 'medium', 'large'],
-		// 	control: { type: 'select' },
-		// },
-		// color: { control: 'color' },
-		// children: {
-		// 	control: { type: 'select' },
-		// 	options: ['List', 'Bold'],
-		// 	mapping: {
-		// 		List: (
-		// 			<ul>
-		// 				<li>1</li>
-		// 				<li>2</li>
-		// 			</ul>
-		// 		),
-		// 		Bold: <b>Bold Bold</b>,
-		// 	},
-		// },
-		// onClick: { action: 'clicked' },
+		text: { control: 'text' },
+		size: {
+			options: ['small', 'medium', 'large'],
+			control: { type: 'select' },
+		},
+		color: { control: 'color' },
+		children: {
+			control: { type: 'select' },
+			options: ['List', 'Bold'],
+			mapping: {
+				List: (
+					<ul>
+						<li>1</li>
+						<li>2</li>
+					</ul>
+				),
+				Bold: <b>Bold Bold</b>,
+			},
+		},
+		onClick: { action: 'clicked' },
 	},
 };
 
