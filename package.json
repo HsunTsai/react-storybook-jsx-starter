@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"classnames": "^2.2.6",
+		"inquirer": "^8.1.2",
 		"node-sass": "^4.9.3",
 		"prop-types": "^15.7.2",
 		"react": "^16.9.0",
@@ -80,6 +81,7 @@
 		"build": "rollup -c && npm run build-index",
 		"build-index": "node ./rollup.index.js",
 		"build-storybook": "build-storybook -c .storybook -o public",
-		"create": "node ./buildUtils/create.js"
+		"create": "node ./buildUtils/create.js",
+		"updateStory": "node ./buildUtils/updateStories.js"
 	}
 }

@@ -4,15 +4,16 @@ import ${name} from './${name}';
 export default {
 	title: '${category}/${name}',
 	parameters: {
-		notes: \'component note\',
+		notes: \'${name} component note\',
 	},
 	// argTypes introduction => https://storybook.js.org/docs/react/essentials/controls#annotation
 	argTypes: {
-
+		/* component argTypes */
+		/* component argTypes */
 	},
-}
+};
 const Template = args => <${name} {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {  };
+Default.args = {};
 `;

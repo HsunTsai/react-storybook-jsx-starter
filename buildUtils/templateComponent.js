@@ -8,7 +8,10 @@ const ${name} = () => {
 ${name}.defaultProps = {
 };
 
+/* Write props detail information and 'npm run updateStory' will help you generate stories's argTypes */
 ${name}.propTypes = {
+	/** CssName */
+	className: PropTypes.string,
 };
 
 export default ${name};

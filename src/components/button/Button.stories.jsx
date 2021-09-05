@@ -10,26 +10,28 @@ export default {
 	},
 	// 相關type介紹 https://storybook.js.org/docs/react/essentials/controls#annotation
 	argTypes: {
-		text: { control: 'text' },
-		size: {
-			options: ['small', 'medium', 'large'],
-			control: { type: 'select' },
-		},
-		color: { control: 'color' },
-		children: {
-			control: { type: 'select' },
-			options: ['List', 'Bold'],
-			mapping: {
-				List: (
-					<ul>
-						<li>1</li>
-						<li>2</li>
-					</ul>
-				),
-				Bold: <b>Bold Bold</b>,
-			},
-		},
-		onClick: { action: 'clicked' },
+		/* component argTypes */
+		/* component argTypes */
+		// text: { control: 'text' },
+		// size: {
+		// 	options: ['small', 'medium', 'large'],
+		// 	control: { type: 'select' },
+		// },
+		// color: { control: 'color' },
+		// children: {
+		// 	control: { type: 'select' },
+		// 	options: ['List', 'Bold'],
+		// 	mapping: {
+		// 		List: (
+		// 			<ul>
+		// 				<li>1</li>
+		// 				<li>2</li>
+		// 			</ul>
+		// 		),
+		// 		Bold: <b>Bold Bold</b>,
+		// 	},
+		// },
+		// onClick: { action: 'clicked' },
 	},
 };
 

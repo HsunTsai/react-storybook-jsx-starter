@@ -25,10 +25,15 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+	/** 輸入的文字 */
 	text: PropTypes.string,
+	/** 按鈕的大小 */
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
+	/** 按鈕顏色 */
 	color: PropTypes.string,
+	/** 按鈕內容 */
 	children: PropTypes.node,
+	/** 點擊後的返回 */
 	onClick: PropTypes.func,
 };
 
