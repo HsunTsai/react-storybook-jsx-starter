@@ -2,6 +2,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const templateComponent = require('./templateComponent');
 const templateUtils = require('./templateUtils');
+const templateScss = require('./templateScss');
 const templateStories = require('./templateStories');
 const { camelize, camelizeUp } = require('./utils');
 const { LogType, print } = require('./logUtils');
@@ -42,6 +43,7 @@ inquirer
 		/* Create Component File */
 		const componentFile = `${folderDir}/${name}.${isUtils ? 'js' : 'jsx'}`;
 		fs.writeFileSync(componentFile, isUtils ? templateUtils(name) : templateComponent(name));
+		if (!isUtils) fs.writeFileSync(`${folderDir}/${camelize(name)}.scss`, templateScss(camelize(name)));
 		/* Create Stories File */
 		fs.writeFileSync(`${folderDir}/${name}.stories.jsx`, templateStories(name, category));
 		/* Modify Component List for export */
