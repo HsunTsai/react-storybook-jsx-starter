@@ -63,7 +63,7 @@ const questionUpdateStories = ({ category, files }) => {
 			const code = fs.readFileSync(storiesPath).toString();
 			const codeResults = code.split(anchorText);
 			if (codeResults.length !== 3) throw new Error(`Cant foun ${anchorText} in '${storiesPath}'`);
-			const tab = '\n\t';
+			const tab = '\r\n\t';
 			codeResults[1] = `${anchorText}${tab}${results
 				.map(
 					({ description, required, key }) =>
