@@ -1,6 +1,11 @@
 import React from 'react';
 import Select from './Select';
 
+const codeGenTypes = {
+	/* component argTypes */
+	/* component argTypes */
+};
+
 export default {
 	title: 'components/Select',
 	parameters: {
@@ -8,6 +13,7 @@ export default {
     Any special notes for the <b>'Button'</b> compoment to be added here.`,
 	},
 	argTypes: {
+		...codeGenTypes,
 		onClick: { action: 'clicked' },
 		text: {
 			options: ['primary', 'secondary', 'success', 'warning'],

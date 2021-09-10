@@ -83,7 +83,7 @@ const getCategory = () => {
 			{
 				type: 'list',
 				name: 'category',
-				message: 'What kind of components are you adding [component / util] ?',
+				message: 'What kind of components are you updating [component / util] ?',
 				choices: ['components', 'utils'],
 			},
 		])

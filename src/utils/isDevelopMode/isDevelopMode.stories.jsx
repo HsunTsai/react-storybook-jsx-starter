@@ -1,13 +1,20 @@
 import React from 'react';
 import isDevelopMode from './isDevelopMode';
 
+const codeGenTypes = {
+	/* component argTypes */
+	/* component argTypes */
+};
+
 export default {
 	title: 'utils/isDevelopMode',
 	parameters: {
 		notes: 'component note',
 	},
-	argTypes: {},
+	// argTypes introduction => https://storybook.js.org/docs/react/essentials/controls#annotation
+	argTypes: { ...codeGenTypes },
 };
+
 const Template = () => (
 	<>
 		<h2>Check mode is develop mode?</h2>

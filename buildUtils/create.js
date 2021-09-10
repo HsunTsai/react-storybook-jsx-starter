@@ -1,14 +1,10 @@
 const fs = require('fs');
-const readline = require('readline');
+const inquirer = require('inquirer');
 const templateComponent = require('./templateComponent');
+const templateUtils = require('./templateUtils');
 const templateStories = require('./templateStories');
-const { camelize, checkName, getFolderName } = require('./utils');
+const { camelize, camelizeUp } = require('./utils');
 const { LogType, print } = require('./logUtils');
-
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
 
 String.prototype.insert = function (insterBefore, string) {
 	const splitedStr = this.split(insterBefore);
@@ -16,30 +12,40 @@ String.prototype.insert = function (insterBefore, string) {
 	return result;
 };
 
-const modifyList = (name, category, folderDir) => {
+const modifyList = (name, category, componentFile) => {
 	const componentListPath = `./rollup.list.${category}.js`;
 	const data = fs.readFileSync(componentListPath).toString();
-	fs.writeFileSync(componentListPath, data.insert(`/* [end] export your ${category} */`, `${name}: '${folderDir}/${name}.jsx',\r\n\t`));
+	fs.writeFileSync(componentListPath, data.insert(`/* [end] export your ${category} */`, `${name}: '${componentFile}',\r\n\t`));
 };
 
-rl.question('Component Name(Upper camel case): ', componentName => {
-	const name = checkName(componentName);
-	rl.question('What kind of components are you adding [component(c) / util(u)] ?', type => {
-		const category = getFolderName(type); // utils or components
-		const folderDir = `./src/${category}/${camelize(name)}`;
+inquirer
+	.prompt([
+		{ type: 'input', name: 'componentName', message: 'Component Name: ' },
+		{
+			type: 'list',
+			name: 'category',
+			message: 'What kind of components are you adding [component / util] ?',
+			choices: ['components', 'utils'],
+		},
+	])
+	.then(({ componentName, category }) => {
+		const folderDir = `./src/${category}/${camelize(componentName)}`;
 		console.log('FolderDir', folderDir);
 		try {
 			fs.mkdirSync(folderDir);
 		} catch {
 			print('Folder Exist !', LogType.warning);
 		}
+
+		const isUtils = category === 'utils';
+		const name = isUtils ? camelize(componentName) : camelizeUp(componentName);
 		/* Create Component File */
-		fs.writeFileSync(`${folderDir}/${name}.jsx`, templateComponent(name));
+		const componentFile = `${folderDir}/${name}.${isUtils ? 'js' : 'jsx'}`;
+		fs.writeFileSync(componentFile, isUtils ? templateUtils(name) : templateComponent(name));
 		/* Create Stories File */
 		fs.writeFileSync(`${folderDir}/${name}.stories.jsx`, templateStories(name, category));
 		/* Modify Component List for export */
-		modifyList(name, category, folderDir);
+		modifyList(name, category, componentFile);
 		print('Successed !', LogType.success);
-		rl.close();
-	});
-});
+	})
+	.catch(error => print(error.message || error, LogType.error));

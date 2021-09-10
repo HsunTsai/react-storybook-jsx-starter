@@ -1,6 +1,11 @@
 import React from 'react';
 import Button from './Button';
 
+const codeGenTypes = {
+	/* component argTypes */
+	/* component argTypes */
+};
+
 export default {
 	title: 'components/Button',
 	parameters: {
@@ -10,8 +15,7 @@ export default {
 	},
 	// 相關type介紹 https://storybook.js.org/docs/react/essentials/controls#annotation
 	argTypes: {
-		/* component argTypes */
-		/* component argTypes */
+		...codeGenTypes,
 		text: { control: 'text' },
 		size: {
 			options: ['small', 'medium', 'large'],

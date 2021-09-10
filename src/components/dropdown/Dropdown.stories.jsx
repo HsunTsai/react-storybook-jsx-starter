@@ -1,6 +1,11 @@
 import React from 'react';
 import Dropdown from './Dropdown';
 
+const codeGenTypes = {
+	/* component argTypes */
+	/* component argTypes */
+};
+
 export default {
 	title: 'components/Dropdown',
 	parameters: {
@@ -10,6 +15,7 @@ export default {
 		},
 	},
 	argTypes: {
+		...codeGenTypes,
 		backgroundColor: { control: 'color' },
 	},
 };
