@@ -1,4 +1,5 @@
 import React from 'react';
+import merge from 'lodash/merge';
 import Dropdown from './Dropdown';
 
 const codeGenTypes = {
@@ -14,10 +15,9 @@ export default {
 			data: 'this data is passed to the addon',
 		},
 	},
-	argTypes: {
-		...codeGenTypes,
+	argTypes: merge(codeGenTypes, {
 		backgroundColor: { control: 'color' },
-	},
+	}),
 };
 
 export const Basic = () => <Dropdown>hello</Dropdown>;

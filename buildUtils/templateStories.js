@@ -1,4 +1,5 @@
 module.exports = (name, category) => `import React from 'react';
+import merge from 'lodash/merge';
 import ${name} from './${name}';
 
 const codeGenTypes = {
@@ -12,7 +13,7 @@ export default {
 		notes: \'${name} component note\',
 	},
 	// argTypes introduction => https://storybook.js.org/docs/react/essentials/controls#annotation
-	argTypes: { ...codeGenTypes },
+	argTypes: merge(codeGenTypes, {}),
 };
 const Template = args => <${name} {...args} />;
 
