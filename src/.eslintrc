@@ -2,7 +2,7 @@
 	"extends": ["airbnb"],
 	"plugins": ["prettier"],
 	"rules": {
-		"indent": ["error", "tab"],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"no-tabs": "off",
 		"comma-dangle": "off",
 		"max-len": ["error", { "code": 140 }],
