@@ -1,13 +1,18 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const glob = require('glob');
-const { camelizeUp, camelize } = require('./utils');
+const { camelizeUp, camelize, jsonParser } = require('./utils');
 const { LogType, print } = require('./logUtils');
 
 String.prototype.insert = function (insterBefore, string) {
 	const splitedStr = this.split(insterBefore);
 	const result = `${splitedStr[0]}${string}${insterBefore}${splitedStr[1]}`;
 	return result;
+};
+
+const propTypes = {
+	string: 'text',
+	bool: 'boolean',
 };
 
 // Update Stories
@@ -37,6 +42,7 @@ const questionUpdateStories = ({ category, files }) => {
 			if (!match || match.length === 0) throw new Error('Can not found propTypes on your code !');
 			const result = match[0].match(/\/\*\*(.|\s)*?\*\/|[a-z].*:\s*PropTypes.*,/g); // 分離出描述或PropTypes
 			// console.log('result', result);
+
 			/* 依據描述或PropTypes 產生argTypes的參數結果 */
 			const results = [];
 			let resultItem = {};
@@ -45,6 +51,8 @@ const questionUpdateStories = ({ category, files }) => {
 					// 奇數 - PropTypes
 					resultItem.key = item.substring(0, item.indexOf(':'));
 					resultItem.required = item.indexOf('isRequired') > -1;
+					const type = Object.keys(propTypes).find(key => item.indexOf(key) > -1);
+					if (type) resultItem.type = propTypes[type];
 					results.push(resultItem);
 				} else {
 					// 偶數 - 描述
@@ -65,10 +73,12 @@ const questionUpdateStories = ({ category, files }) => {
 			if (codeResults.length !== 3) throw new Error(`Cant foun ${anchorText} in '${storiesPath}'`);
 			const tab = '\r\n\t';
 			codeResults[1] = `${anchorText}${tab}${results
-				.map(
-					({ description, required, key }) =>
-						`${key}: { description: '${description}'${required ? ', type: { required: true }' : ''} },`
-				)
+				.map(({ description, required, type, key }) => {
+					const params = { description };
+					if (required) params.required = true;
+					if (type) params.control = { type };
+					return `${key}: ${jsonParser(params)},`;
+				})
 				.join(tab)}${tab}${anchorText}`;
 			fs.writeFileSync(storiesPath, codeResults.join(''));
 			print(`${storiesPath}has been updated !`, LogType.success);
