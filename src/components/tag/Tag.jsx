@@ -6,8 +6,10 @@ import './tag.scss';
 
 const Tag = ({ className, tags }) => (
 	<div className={classNames('tag', className)}>
-		{(Array.isArray(tags) ? tags : []).map(tag => (
-			<span className="tag__item">{tag}</span>
+		{(Array.isArray(tags) ? tags : []).map((tag, i) => (
+			<span className="tag__item" key={i.toString()}>
+				{tag}
+			</span>
 		))}
 	</div>
 );

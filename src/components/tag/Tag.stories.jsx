@@ -1,22 +1,18 @@
 import React from 'react';
-import merge from 'lodash/merge';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+import generateBadges, { MAINTAINER } from '../../utils/generateBadges';
 import Tag from './Tag';
-
-const codeGenTypes = {
-	/* component argTypes */
-	className: { description: 'CssName' },
-	tags: { description: 'Tag List' },
-	/* component argTypes */
-};
 
 export default {
 	title: 'components/Tag',
 	parameters: {
 		notes: 'Tag component note',
+		...generateBadges({ badges: [BADGE.DEPRECATED], mainteiners: MAINTAINER.HSUN }),
 	},
 	// argTypes introduction => https://storybook.js.org/docs/react/essentials/controls#annotation
-	argTypes: merge(codeGenTypes, {}),
+	argTypes: {},
 };
+
 const Template = args => <Tag {...args} />;
 
 export const Default = Template.bind({});
