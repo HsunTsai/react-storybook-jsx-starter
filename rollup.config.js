@@ -1,13 +1,15 @@
-import resolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import image from 'rollup-plugin-img';
-import replace from 'rollup-plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import image from '@rollup/plugin-image';
+import replace from '@rollup/plugin-replace';
+import json from '@rollup/plugin-json';
 
+const packageJson = require('./package.json');
 const components = require('./rollup.list.components');
 const utils = require('./rollup.list.utils');
 
@@ -17,25 +19,16 @@ const external = ['react', 'react-dom', 'prop-types'];
 // Plugins
 const plugins = [
 	image(),
-	resolve({ extensions: ['.js', '.jsx', '.json'] }), // browser: true,
+	json(),
+	nodeResolve({ extensions: ['.js', '.jsx', '.json'], preferBuiltins: false, browser: true }),
 	postcss({ extensions: ['.css', '.scss'], plugins: [autoprefixer()] }),
-	replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-	babel({ include: 'src/**', runtimeHelpers: true, exclude: 'node_modules/**' }),
-	commonjs({
-		include: 'node_modules/**',
-		namedExports: {
-			'node_modules/react/index.js': [
-				'Children',
-				'ReactComponent',
-				'PureComponent',
-				'FunctionComponent',
-				'Component',
-				'PropTypes',
-				'createElement',
-			],
-			'node_modules/react-dom/index.js': ['render'],
-		},
+	replace({
+		'process.env.NODE_ENV': JSON.stringify('production'),
+		'process.env.VERSION': JSON.stringify(packageJson.version + packageJson.build),
+		preventAssignment: true,
 	}),
+	babel({ include: 'src/**', babelHelpers: 'bundled', exclude: 'node_modules/**', sourceMaps: false }),
+	commonjs(),
 	terser(), // minify code
 ];
 
